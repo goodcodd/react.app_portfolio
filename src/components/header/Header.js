@@ -13,7 +13,12 @@ export default function Header() {
                 <div className="header__text">
                     <p>with passion for learning and creating.</p>
                 </div>
-                <a href="https://iridescent-salamander-0fd834.netlify.app/" className="btn" target="_blank">My resume</a>
+                <a href="https://iridescent-salamander-0fd834.netlify.app/"
+                   className="btn"
+                   target="_blank"
+                   rel="noreferrer">
+                    My resume
+                </a>
             </div>
         </div>
       </header>
