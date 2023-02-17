@@ -1,4 +1,8 @@
 import React from 'react'
+import diskord from "../../assets/icons/diskord.png";
+import Link from "../links/Link";
+import Image from "../image/Image";
+import github from "../../assets/icons/github.png";
 
 export default function Contacts() {
     return (
@@ -16,21 +20,21 @@ export default function Contacts() {
 
                         <li className="content-list__item">
                             <h2 className="title-2">Telegram</h2>
-                            <p><a href="https://t.me/A_Lytvyn"
-                                  target="_blank"
-                                  rel="noreferrer">
-                                A_Lytvyn
-                                </a>
+                            <p>
+                                <Link href={"https://t.me/A_Lytvyn"}
+                                      target={"_blank"}
+                                      rel={"noreferrer"}
+                                      text={"A_Lytvyn"}
+                                />
                             </p>
                         </li>
 
                         <li className="content-list__item">
                             <h2 className="title-2">Email</h2>
-                            <p><a href="mailto:2858.allo.113@gmail.com"
-                                  target="_blank"
-                                  rel="noreferrer">
-                                2858.allo.113@gmail.com
-                            </a>
+                            <p>
+                                <Link href="mailto:2858.allo.113@gmail.com"
+                                      text="2858.allo.113@gmail.com"
+                                />
                             </p>
                         </li>
                     </ul>
