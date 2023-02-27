@@ -1,49 +1,100 @@
-import React from 'react'
+import React, {Component} from 'react'
+import Image from "../image/Image";
 import img1 from "../../assets/img/projects/01.jpg";
 import img2 from "../../assets/img/projects/02.jpg";
 import img3 from "../../assets/img/projects/03.jpg";
 import img4 from "../../assets/img/projects/04.jpg";
 import img5 from "../../assets/img/projects/05.jpg";
 import img6 from "../../assets/img/projects/06.jpg";
+import img7 from "../../assets/img/projects/07.jpg";
 
-export default function Projects() {
-    return (
-        <main className="section">
-            <div className="container">
-                <h2 className="title-1">Projects</h2>
-                <ul className="projects">
-                    <li className="project">
-                        <img alt={"Project img"} className={"project__img"} src={img1}/>
-                        <h3 className="project__title">Global Game Jam 2023</h3>
-                    </li>
+let userList = [
+    {
+        image: img1,
+        description: 'Global Game Jam',
+        data: 2023
+    },
+    {
+        image: img2,
+        description: 'First html/css project',
+        data: 2020
+    },
+    {
+        image: img3,
+        description: 'Site for Practice',
+        data: 2022
+    },
+    {
+        image: img4,
+        description: 'C++ coding',
+        data: 2021
+    },
+    {
+        image: img5,
+        description: 'Coding Games in Python',
+        data: 2019
+    },
+    {
+        image: img6,
+        description: 'HTML Resume',
+        data: 2022
+    }
+]
 
-                    <li className="project">
-                        <img alt={"Project img"} className={"project__img"} src={img2}/>
-                        <h3 className="project__title">First html/css project</h3>
-                    </li>
+export default class Projects extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            list: userList
+        }
+    }
 
-                    <li className="project">
-                        <img alt={"Project img"} className={"project__img"} src={img3}/>
-                        <h3 className="project__title">Site for Practice</h3>
-                    </li>
+    standardSort = () => {
+        this.setState(({list}) => list.sort(
+            (x, y) => x.data - y.data
+        ))
+    }
+    AddArray = () => {
+        this.setState(({list}) => list.push({
+            image: img7,
+            description: 'Work with Figma',
+            data: 2020
+        }))
+    }
 
-                    <li className="project">
-                        <img alt={"Project img"} className={"project__img"} src={img4}/>
-                        <h3 className="project__title">C++ coding</h3>
-                    </li>
+    DeleteArray = () => {
+        this.setState(({list}) => list.pop())
+    }
+    render() {
+        let list = this.state.list
+        return (
+            <main className="section">
+                <div className="container">
+                    <h2 className="title-1">Projects</h2>
+                    <ul className="projects">
 
-                    <li className="project">
-                        <img alt={"Project img"} className={"project__img"} src={img5}/>
-                        <h3 className="project__title">Coding Games in Python</h3>
-                    </li>
+                        {
+                            list.map((item,i) =>
+                                (<li className="project" key={i}>
+                                    <Image alt={"Project img"} className={"project__img"} src={item.image}/>
+                                    <h3 className="project__title">{item.description}</h3>
+                                    <p className="project__data">{item.data}</p>
+                                </li> ))
+                         }
 
-                    <li className="project">
-                        <img alt={"Project img"} className={"project__img"} src={img6}/>
-                        <h3 className="project__title">HTML Resume</h3>
-                    </li>
-                </ul>
-            </div>
-        </main>
-    );
+
+                    </ul>
+
+                    <div className={'btn_projects'}>
+                        <button className={'btn btn_projects'} onClick={this.standardSort}>Сортувати</button>
+                        <button className={'btn btn_projects'} onClick={this.AddArray}>Додати</button>
+                        <button className={'btn btn_projects'} onClick={this.DeleteArray}>Видалити</button>
+                    </div>
+
+                </div>
+            </main>
+        );
+    }
+
 }
 
