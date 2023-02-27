@@ -54,6 +54,22 @@ export default class Projects extends Component {
             (x, y) => x.data - y.data
         ))
     }
+    sortArray = () => {
+        let array = this.state.list;
+        let arrayLength = array.length;
+        for (let i = 0; i < arrayLength; i++) {
+            for (let j = 0; j < arrayLength - 1 ; j++) {
+                if (array[j].data > array[j+1].data) {
+                    let temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+        }
+        this.setState({
+            list: array
+        });
+    }
     AddArray = () => {
         this.setState(({list}) => list.push({
             image: img7,
@@ -86,7 +102,8 @@ export default class Projects extends Component {
                     </ul>
 
                     <div className={'btn_projects'}>
-                        <button className={'btn btn_projects'} onClick={this.standardSort}>Сортувати</button>
+                        <button className={'btn btn_projects'} onClick={this.standardSort}>Сортувати1</button>
+                        <button className={'btn btn_projects'} onClick={this.sortArray}>Сортувати2</button>
                         <button className={'btn btn_projects'} onClick={this.AddArray}>Додати</button>
                         <button className={'btn btn_projects'} onClick={this.DeleteArray}>Видалити</button>
                     </div>
