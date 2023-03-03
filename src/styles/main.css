@@ -122,7 +122,7 @@ a {
     align-items: center;
     background-color: var(--dark-bg);
 
-    background-image: url(../../assets/img/Abstract.png);
+    background-image: url(../assets/img/Abstract.png);
     background-repeat: no-repeat;
     block-size: auto;
     background-position: center;
