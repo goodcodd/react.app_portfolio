@@ -51,38 +51,41 @@ export default class Projects extends Component {
   }
 
   standardSort = () => {
-    this.setState(({ list }) => list.sort(
-      (x, y) => x.data - y.data
-    ));
+    this.setState(({ list }) => ({
+      list: [...list].sort((x, y) => x.data - y.data)
+    }));
   };
 
   sortArray = () => {
-    const array = this.setState;
-    const arrayLength = array.length;
+    const { list: listCopy } = this.state;
+    const arrayLength = listCopy.length;
     for (let i = 0; i < arrayLength; i += 1) {
       for (let j = 0; j < arrayLength - 1; j += 1) {
-        if (array[j].data > array[j + 1].data) {
-          const temp = array[j];
-          array[j] = array[j + 1];
-          array[j + 1] = temp;
+        if (listCopy[j].data > listCopy[j + 1].data) {
+          const temp = listCopy[j];
+          listCopy[j] = listCopy[j + 1];
+          listCopy[j + 1] = temp;
         }
       }
     }
     this.setState({
-      list: array
+      list: listCopy
     });
   };
 
   AddArray = () => {
-    this.setState(({ list }) => list.push({
-      image: img7,
-      description: 'Work with Figma',
-      data: 2020
-    }));
+    this.setState(({ list }) => {
+      const newList = [...list, {
+        image: img7,
+        description: 'Work with Figma',
+        data: 2020
+      }];
+      return { list: newList };
+    });
   };
 
   DeleteArray = () => {
-    this.setState(({ list }) => list.pop());
+    this.setState(({ list }) => ({ list: [...list].slice(0, list.length - 1) }));
   };
 
   render() {
@@ -92,10 +95,9 @@ export default class Projects extends Component {
         <div className="container">
           <h2 className="title-1">Projects</h2>
           <ul className="projects">
-
             {
                 list.map((item) => (
-                  <li className="project" key={item.image}>
+                  <li className="project" key={item.image} draggable>
                     <Image alt="Project img" className="project__img" src={item.image} />
                     <h3 className="project__title">{item.description}</h3>
                     <p className="project__data">{item.data}</p>
