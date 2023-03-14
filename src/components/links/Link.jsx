@@ -15,7 +15,9 @@ export default class Link extends Component {
 }
 Link.propTypes = {
   href: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType(
+    [PropTypes.string, PropTypes.element]
+  ).isRequired,
   className: PropTypes.string,
   rel: PropTypes.string,
   target: PropTypes.string
