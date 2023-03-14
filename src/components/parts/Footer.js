@@ -4,7 +4,7 @@ import Image from '../image/Image';
 
 import github from '../../assets/icons/github.png';
 import instagram from '../../assets/icons/instagram.png';
-import diskord from '../../assets/icons/diskord.png';
+import dickord from '../../assets/icons/diskord.png';
 
 export default function Footer() {
   return (
@@ -35,7 +35,7 @@ export default function Footer() {
                 href="https://discord.com/channels/534496884849639455/637273705579413533"
                 target="_blank"
                 rel="noreferrer"
-                text={<Image src={diskord} alt="link" />}
+                text={<Image src={dickord} alt="link" />}
               />
             </li>
 
