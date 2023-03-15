@@ -3,7 +3,7 @@ import Image from '../image/Image';
 import img1 from '../../assets/img/projects/01.jpg';
 import img2 from '../../assets/img/projects/02.jpg';
 import img3 from '../../assets/img/projects/03.jpg';
-import img4 from '../../assets/img/projects/04.jpg';
+// import img4 from '../../assets/img/projects/04.jpg';
 import img5 from '../../assets/img/projects/05.jpg';
 import img6 from '../../assets/img/projects/06.jpg';
 import img7 from '../../assets/img/projects/07.jpg';
@@ -26,7 +26,7 @@ const userList = [
     data: 2022
   },
   {
-    image: img4,
+    image: '404',
     description: 'C++ coding',
     data: 2021
   },
@@ -46,9 +46,27 @@ export default class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: userList
+      list: userList,
+      dragItem: null,
     };
+    // this.dragItem = React.useRef < any > null;
+    // this.dragOverItem = React.useRef < any > null;
   }
+
+  functionOnDragStart = (e, id) => {
+    this.setState({ dragItem: id });
+    // eslint-disable-next-line no-console
+    console.log('Drag started', id);
+  };
+
+  functionOnDragEnter = (e) => {
+    e.preventDefault();
+    // this.setState({ dragOverItem: id });
+    // eslint-disable-next-line no-console
+    // console.log('Drag enter', id);
+  };
+
+  onDrop = () => {};
 
   standardSort = () => {
     this.setState(({ list }) => ({
@@ -89,7 +107,9 @@ export default class Projects extends Component {
   };
 
   render() {
-    const { list } = this.state;
+    const { list, dragItem } = this.state;
+    // eslint-disable-next-line no-console
+    console.log(dragItem);
     return (
       <main className="section">
         <div className="container">
@@ -97,7 +117,14 @@ export default class Projects extends Component {
           <ul className="projects">
             {
                 list.map((item) => (
-                  <li className="project" key={item.image} draggable>
+                  <li
+                    className="project"
+                    key={item.image}
+                    draggable
+                    onDragStart={(e) => this.functionOnDragStart(e, item.id)}
+                    onDragEnter={(e) => this.functionOnDragEnter(e, item.id)}
+                    onDrop={this.onDrop}
+                  >
                     <Image alt="Project img" className="project__img" src={item.image} />
                     <h3 className="project__title">{item.description}</h3>
                     <p className="project__data">{item.data}</p>
