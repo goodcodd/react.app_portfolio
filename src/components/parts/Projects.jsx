@@ -53,20 +53,15 @@ export default class Projects extends Component {
     // this.dragOverItem = React.useRef < any > null;
   }
 
-  functionOnDragStart = (e, id) => {
-    this.setState({ dragItem: id });
+  functionOnDragStart = (e, item) => {
+    this.setState({ dragItem: item });
     // eslint-disable-next-line no-console
-    console.log('Drag started', id);
+    console.log('Drag started', item);
   };
 
   functionOnDragEnter = (e) => {
     e.preventDefault();
-    // this.setState({ dragOverItem: id });
-    // eslint-disable-next-line no-console
-    // console.log('Drag enter', id);
   };
-
-  onDrop = () => {};
 
   standardSort = () => {
     this.setState(({ list }) => ({
@@ -121,9 +116,9 @@ export default class Projects extends Component {
                     className="project"
                     key={item.image}
                     draggable
-                    onDragStart={(e) => this.functionOnDragStart(e, item.id)}
-                    onDragEnter={(e) => this.functionOnDragEnter(e, item.id)}
-                    onDrop={this.onDrop}
+                    onDragStart={(e) => this.functionOnDragStart(e, item)}
+                    onDragEnter={(e) => this.functionOnDragEnter(e, item)}
+                    onDrop={(e) => this.handleDrop(e, item.id)}
                   >
                     <Image alt="Project img" className="project__img" src={item.image} />
                     <h3 className="project__title">{item.description}</h3>
