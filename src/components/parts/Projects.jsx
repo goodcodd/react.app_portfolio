@@ -63,6 +63,8 @@ export default class Projects extends Component {
     e.preventDefault();
   };
 
+  handleDrop = () => {};
+
   standardSort = () => {
     this.setState(({ list }) => ({
       list: [...list].sort((x, y) => x.data - y.data)
