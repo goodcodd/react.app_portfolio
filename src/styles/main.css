@@ -312,6 +312,18 @@ a {
     margin-top: 0.5em;
 }
 
+/*Api*/
+.api__list {
+    text-align: center;
+    display: inline-block;
+    padding: 5px;
+}
+
+.api__img {
+    margin: 0 20px 20px;
+    width: 50px;
+    height: 50px;
+}
 
 @media (max-width: 620px) {
     /*Header*/

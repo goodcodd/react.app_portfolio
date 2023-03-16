@@ -47,7 +47,7 @@ export default class Projects extends Component {
     super(props);
     this.state = {
       list: userList,
-      dragItem: null,
+      dragItem: null
     };
     // this.dragItem = React.useRef < any > null;
     // this.dragOverItem = React.useRef < any > null;
@@ -63,7 +63,20 @@ export default class Projects extends Component {
     e.preventDefault();
   };
 
-  handleDrop = () => {};
+  handleDrop = (e, item) => {
+    e.preventDefault();
+    const { items, dragItem } = this.state;
+    const draggingItemIndex = items.findIndex((index) => index.id === dragItem);
+    const droppingItemIndex = items.findIndex((index) => index.id === item);
+    const newItems = [...userList];
+
+    // Swap items
+    [newItems[draggingItemIndex],
+      newItems[droppingItemIndex]] = [newItems[droppingItemIndex],
+      newItems[draggingItemIndex]];
+
+    this.setState({ items: newItems, dragItem: null });
+  };
 
   standardSort = () => {
     this.setState(({ list }) => ({
@@ -119,8 +132,8 @@ export default class Projects extends Component {
                     key={item.image}
                     draggable
                     onDragStart={(e) => this.functionOnDragStart(e, item)}
-                    onDragEnter={(e) => this.functionOnDragEnter(e, item)}
-                    onDrop={(e) => this.handleDrop(e, item.id)}
+                    onDragEnter={this.functionOnDragEnter}
+                    onDrop={(e) => this.handleDrop(e, item)}
                   >
                     <Image alt="Project img" className="project__img" src={item.image} />
                     <h3 className="project__title">{item.description}</h3>
