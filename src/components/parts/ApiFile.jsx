@@ -39,16 +39,16 @@ export default class ApiFile extends Component {
         <p>
           {' '}
           Error
-          {error.message()} 
+          {error.message()}
         </p>
       );
     } if (!isLoaded) {
       return <p> Loading! </p>;
-    }  
+    }
     return (
       <ul className="api__list">
         {items.map((item) => (
-          <li key={item.name}>
+          <li key={item.idDrink}>
             {item.strDrink}
             <Image className="api__img" src={item.strDrinkThumb} alt="api" />
           </li>
