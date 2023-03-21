@@ -39,13 +39,7 @@ export default function Contacts() {
           </ul>
         </div>
       </div>
-      <hr
-        style={{
-          color: 'black',
-          backgroundColor: 'black',
-          height: 5
-        }}
-      />
+      <hr className="hr" />
     </main>
   );
 }

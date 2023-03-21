@@ -47,6 +47,12 @@ a {
     flex-direction: column;
 }
 
+.hr {
+    color: var(--black);
+    background: var(--black);
+    height: 5px;
+}
+
 /*Nav*/
 .nav {
     padding: 20px 0;
