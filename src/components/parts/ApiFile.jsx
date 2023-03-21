@@ -15,24 +15,19 @@ export default class ApiFile extends Component {
 
   componentDidMount() {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')
-      .then(
-        (response) => response.json()
-      )
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.drinks
-          });
-          // this.pagesNumber = Math.ceil(result.drinks.length / 12);
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      );
+      .then((response) => response.json())
+      .then((result) => {
+        this.setState({
+          isLoaded: true,
+          items: result.drinks
+        });
+      })
+      .catch((error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      });
   }
 
   render() {
