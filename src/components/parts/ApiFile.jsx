@@ -8,7 +8,9 @@ export default class ApiFile extends Component {
       error: null,
       isLoaded: false,
       items: []
+      // currentPage: 0
     };
+    // this.pagesNumber = 1;
   }
 
   componentDidMount() {
@@ -22,6 +24,7 @@ export default class ApiFile extends Component {
             isLoaded: true,
             items: result.drinks
           });
+          // this.pagesNumber = Math.ceil(result.drinks.length / 12);
         },
         (error) => {
           this.setState({
@@ -46,14 +49,18 @@ export default class ApiFile extends Component {
       return <p> Loading! </p>;
     }
     return (
-      <ul className="api__list">
-        {items.map((item) => (
-          <li key={item.idDrink}>
-            {item.strDrink}
-            <Image className="api__img" src={item.strDrinkThumb} alt="api" />
-          </li>
-        ))}
-      </ul>
+      <main className="section">
+        <div className="container">
+          <ul className="api__list">
+            {items.map((item) => (
+              <li key={item.idDrink}>
+                {item.strDrink}
+                <Image className="api__img" src={item.strDrinkThumb} alt="api" />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </main>
     );
   }
 }

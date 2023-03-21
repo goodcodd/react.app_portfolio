@@ -9,7 +9,7 @@ export default function Header() {
           <h1 className="header__title">
             <strong>
               Hi, my name is
-              <em>Nastya</em>
+              <em> Nastya</em>
             </strong>
             <br />
             a frontend developer

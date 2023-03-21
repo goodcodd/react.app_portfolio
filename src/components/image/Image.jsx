@@ -22,6 +22,7 @@ export default class Image extends Component {
         src={src}
         onError={this.onError}
         onLoad={this.onLoad}
+        draggable="false"
       />
     );
   }

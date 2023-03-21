@@ -11,34 +11,40 @@ import Button from '../buttons/Button';
 
 const userList = [
   {
+    id: 0,
+    image: img6,
+    description: 'HTML Resume',
+    data: 2022
+  },
+  {
+    id: 1,
     image: img1,
     description: 'Global Game Jam',
     data: 2023
   },
   {
+    id: 2,
     image: img2,
     description: 'First html/css project',
     data: 2020
   },
   {
+    id: 3,
     image: img3,
     description: 'Site for Practice',
     data: 2022
   },
   {
+    id: 4,
     image: '404',
     description: 'C++ coding',
     data: 2021
   },
   {
+    id: 5,
     image: img5,
     description: 'Coding Games in Python',
     data: 2019
-  },
-  {
-    image: img6,
-    description: 'HTML Resume',
-    data: 2022
   }
 ];
 
@@ -46,36 +52,43 @@ export default class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: userList,
-      dragItem: null
+      list: userList
     };
-    // this.dragItem = React.useRef < any > null;
-    // this.dragOverItem = React.useRef < any > null;
+    this.dragItem = null;
+    this.dragOverItem = null;
   }
 
-  functionOnDragStart = (e, item) => {
-    this.setState({ dragItem: item });
+  componentDidMount() {
+    this.setState({ list: userList });
+  }
+
+  functionOnDragStart = (item) => {
+    this.dragItem = item;
     // eslint-disable-next-line no-console
     console.log('Drag started', item);
   };
 
-  functionOnDragEnter = (e) => {
-    e.preventDefault();
+  functionOnDragEnter = (item) => {
+    this.dragOverItem = item;
+    // eslint-disable-next-line no-console
+    console.log('Drag enter', item);
   };
 
-  handleDrop = (e, item) => {
-    e.preventDefault();
-    const { items, dragItem } = this.state;
-    const draggingItemIndex = items.findIndex((index) => index.id === dragItem);
-    const droppingItemIndex = items.findIndex((index) => index.id === item);
-    const newItems = [...userList];
+  handleDrop = () => {
+    const { list } = this.state;
 
-    // Swap items
-    [newItems[draggingItemIndex],
-      newItems[droppingItemIndex]] = [newItems[droppingItemIndex],
-      newItems[draggingItemIndex]];
+    if (this.dragItem === this.dragOverItem) return;
 
-    this.setState({ items: newItems, dragItem: null });
+    const draggingItemIndex = list.findIndex((item) => item.id === this.dragItem);
+    const overItemIndex = list.findIndex((item) => item.id === this.dragOverItem);
+
+    const newItems = [...list];
+
+    newItems.splice(draggingItemIndex, 1);
+    newItems.splice(overItemIndex, 0, list[draggingItemIndex]);// Swap items
+    this.dragItem = null;
+    this.dragOverItem = null;
+    this.setState({ list: newItems });
   };
 
   standardSort = () => {
@@ -104,6 +117,7 @@ export default class Projects extends Component {
   AddArray = () => {
     this.setState(({ list }) => {
       const newList = [...list, {
+        id: list.length + 1,
         image: img7,
         description: 'Work with Figma',
         data: 2020
@@ -117,9 +131,7 @@ export default class Projects extends Component {
   };
 
   render() {
-    const { list, dragItem } = this.state;
-    // eslint-disable-next-line no-console
-    console.log(dragItem);
+    const { list } = this.state;
     return (
       <main className="section">
         <div className="container">
@@ -131,9 +143,9 @@ export default class Projects extends Component {
                     className="project"
                     key={item.image}
                     draggable
-                    onDragStart={(e) => this.functionOnDragStart(e, item)}
-                    onDragEnter={this.functionOnDragEnter}
-                    onDrop={(e) => this.handleDrop(e, item)}
+                    onDragStart={() => this.functionOnDragStart(item.id)}
+                    onDragEnter={() => this.functionOnDragEnter(item.id)}
+                    onDragEnd={() => this.handleDrop()}
                   >
                     <Image alt="Project img" className="project__img" src={item.image} />
                     <h3 className="project__title">{item.description}</h3>
@@ -150,7 +162,6 @@ export default class Projects extends Component {
             <Button type="button" className="btn btn_projects" onClick={this.AddArray} text="Додати" />
             <Button type="button" className="btn btn_projects" onClick={this.DeleteArray} text="Видалити" />
           </div>
-
         </div>
       </main>
     );
