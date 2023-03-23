@@ -9,6 +9,9 @@ import img6 from '../../assets/img/projects/06.jpg';
 import img7 from '../../assets/img/projects/07.jpg';
 import Button from '../buttons/Button';
 
+export const ARROW_LEFT_KEY_CODE = 37;
+export const ARROW_RIGHT_KEY_CODE = 39;
+
 const userList = [
   {
     id: 0,
@@ -52,7 +55,9 @@ export default class Projects extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list: userList
+      list: userList,
+      ActiveItemId: null,
+      SelectedItemId: 0
     };
     this.dragItem = null;
     this.dragOverItem = null;
@@ -60,7 +65,35 @@ export default class Projects extends Component {
 
   componentDidMount() {
     this.setState({ list: userList });
+    document.addEventListener('keyup', this.handleKey);
   }
+
+  handleKey = (event) => {
+    let { SelectedItemId } = this.state;
+    if (SelectedItemId === null) {
+      SelectedItemId = 0;
+    }
+    const { list } = this.state;
+    switch (event.keyCode) {
+      case ARROW_LEFT_KEY_CODE:
+        this.setState({
+          SelectedItemId:
+              SelectedItemId = (SelectedItemId - 1) < 0 ? (list.length - 1) : (SelectedItemId - 1)
+        });
+        break;
+      case ARROW_RIGHT_KEY_CODE:
+        this.setState({
+          SelectedItemId: SelectedItemId = (SelectedItemId + 1) % list.length
+        });
+        break;
+      default: this.setState({ SelectedItemId: null });
+    }
+    // const hotKey = {
+    //   [ARROW_LEFT_KEY_CODE]: () => this.setState({ SelectedItemId: SelectedItemId -= 1 }),
+    //   [ARROW_RIGHT_KEY_CODE]: () => this.setState({ SelectedItemId: SelectedItemId += 1 })
+    // };
+    // hotKey[event.keyCode]?.();
+  };
 
   functionOnDragStart = (item) => {
     this.dragItem = item;
@@ -70,6 +103,7 @@ export default class Projects extends Component {
 
   functionOnDragEnter = (item) => {
     this.dragOverItem = item;
+    this.setState({ ActiveItemId: item });
     // eslint-disable-next-line no-console
     console.log('Drag enter', item);
   };
@@ -88,7 +122,7 @@ export default class Projects extends Component {
     newItems.splice(overItemIndex, 0, list[draggingItemIndex]);// Swap items
     this.dragItem = null;
     this.dragOverItem = null;
-    this.setState({ list: newItems });
+    this.setState({ list: newItems, ActiveItemId: null });
   };
 
   standardSort = () => {
@@ -130,6 +164,20 @@ export default class Projects extends Component {
     this.setState(({ list }) => ({ list: [...list].slice(0, list.length - 1) }));
   };
 
+  getClassName = (item) => {
+    let className = 'project';
+    const { ActiveItemId, SelectedItemId } = this.state;
+    if (item === ActiveItemId) {
+      className += ' project-active';
+    }
+    if (item === SelectedItemId) {
+      className += ' project-selected';
+    }
+    // eslint-disable-next-line no-console
+    console.log(className);
+    return className;
+  };
+
   render() {
     const { list } = this.state;
     return (
@@ -140,7 +188,7 @@ export default class Projects extends Component {
             {
                 list.map((item) => (
                   <li
-                    className="project"
+                    className={this.getClassName(item.id)}
                     key={item.image}
                     draggable
                     onDragStart={() => this.functionOnDragStart(item.id)}

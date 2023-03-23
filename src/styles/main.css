@@ -263,6 +263,14 @@ a {
     cursor: move;
 }
 
+.project-active{
+    outline: 2px solid red;
+}
+
+.project-selected{
+    outline: 4px solid green;
+}
+
 .project__img {
     border-radius: 10px;
 }
@@ -332,6 +340,13 @@ a {
     width: 50px;
     height: 50px;
     box-shadow: 0 0 5px 1px rgba(0, 140, 186, 0.5);
+    transition: scale 0.2s;
+    filter: grayscale(100%);
+}
+
+.api__img:hover{
+    scale:4.0;
+    filter: grayscale(0);
 }
 
 @media (max-width: 620px) {

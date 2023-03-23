@@ -50,6 +50,7 @@ export default class ApiFile extends Component {
             {items.map((item) => (
               <li key={item.idDrink}>
                 {item.strDrink}
+                <br />
                 <Image className="api__img" src={item.strDrinkThumb} alt="api" />
               </li>
             ))}
