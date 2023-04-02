@@ -8,28 +8,28 @@ export default class Navbar extends React.Component {
         <div className="container">
           <div className="naw-row">
             <h1 className="logo">
-              <strong>Freelancer </strong>
-              portfolio
+              <strong>Drinks </strong>
+              restaurant
             </h1>
 
             <ul className="naw-list">
               <li className="naw-list__item">
                 <Link
-                  href="src/components/navbar#home"
+                  href="#projects"
                   className="naw-list__link--active"
-                  text="Projects"
+                  text="Photos"
                 />
               </li>
               <li className="naw-list__item">
                 <Link
-                  href="src/components/navbar#skills"
+                  href="#skills"
                   className="naw-list__link"
-                  text="Skills"
+                  text="Inform"
                 />
               </li>
               <li className="naw-list__item">
                 <Link
-                  href="src/components/navbar#contacts"
+                  href="#contacts"
                   className="naw-list__link"
                   text="Contacts"
                 />

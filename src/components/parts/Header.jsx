@@ -8,14 +8,14 @@ export default function Header() {
         <div className="header__wrapper">
           <h1 className="header__title">
             <strong>
-              Hi, my name is
-              <em> Nastya</em>
+              Become a
+              <em> Tastemaker </em>
             </strong>
             <br />
-            a frontend developer
+            With These Favorites
           </h1>
           <div className="header__text">
-            <p>with passion for learning and creating.</p>
+            <p>only the best for you.</p>
           </div>
 
           <Link

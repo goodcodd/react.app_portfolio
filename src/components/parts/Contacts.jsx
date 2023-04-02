@@ -39,7 +39,6 @@ export default function Contacts() {
           </ul>
         </div>
       </div>
-      <hr className="hr" />
     </main>
   );
 }

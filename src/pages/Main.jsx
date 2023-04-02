@@ -15,9 +15,9 @@ function Main() {
       <Navbar />
       <Header />
       <Projects />
+      <ApiFile />
       <Skills />
       <Contacts />
-      <ApiFile />
       <Footer />
     </div>
   );

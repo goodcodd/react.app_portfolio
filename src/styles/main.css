@@ -7,10 +7,10 @@ font-family: 'Poppins', sans-serif;
 
 
 :root {
-    --black: #171718;
-    --black-border: #171718;
-    --white: #fff;
-    --purple: #5C62EC;
+    --black: #562e41;
+    --black-border:  #562e41;
+    --white: #f8bcae;
+    --purple: #aa5c6e;
 
     --text-color: var(--black);
 
@@ -24,7 +24,7 @@ html, body {
     font-family: 'DM Sans', sans-serif;
     letter-spacing: -0.5px;
     color: var(--text-color);
-
+    scroll-behavior: smooth;
     height: 100%;
 }
 
@@ -50,7 +50,8 @@ a {
 .hr {
     color: var(--black);
     background: var(--black);
-    height: 5px;
+    height: 8px;
+    margin-top: 60px;
 }
 
 /*Nav*/
@@ -156,6 +157,7 @@ a {
 .header__title em {
     font-style: normal;
     color: var(--accent);
+    text-shadow: 2px 1px var(--white);
 }
 
 .header__text {
@@ -241,7 +243,7 @@ a {
 }
 
 .slills-container {
-    padding: 40px 0;
+    padding: 70px 0;
     background-color: var(--dark-bg);
     color: var(--header-text);;
 }
@@ -335,18 +337,52 @@ a {
     grid-row-gap: 1em;
 }
 
+.section_api {
+    padding: 10px 0;
+}
+
+.api_h {
+    margin-bottom: 60px;
+    font-size: 60px;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--accent);
+    text-align: center;
+}
+
 .api__img {
     margin: 0 20px 20px;
     width: 50px;
     height: 50px;
-    box-shadow: 0 0 5px 1px rgba(0, 140, 186, 0.5);
+    box-shadow: 0 0 5px 1px var(--black);
     transition: scale 0.2s;
-    filter: grayscale(100%);
+    filter: blur(1px);
 }
 
 .api__img:hover{
     scale:4.0;
     filter: grayscale(0);
+}
+
+.btn-group {
+    border: 1px solid #6e6e6e;
+    cursor: pointer;
+    float: left;
+    display: flex;
+}
+
+.btn-secondary {
+    background-color: rgb(240, 231, 238);
+    cursor: none;
+    color: #171718;
+}
+
+.btn-danger {
+    background-color: var(--black);
+}
+
+.btn-dsuccess {
+    background-color: var(--black);
 }
 
 @media (max-width: 620px) {
@@ -389,6 +425,10 @@ a {
         margin-right: auto;
     }
 
+    .projects {
+        margin-bottom: 40px;
+    }
+
     /*Social*/
     .social__item {
         width: 28px;
@@ -414,5 +454,15 @@ a {
     
     .content-list__item {
         font-size: 16px;
+    }
+
+    .api__list {
+        display: block;
+    }
+
+    .btn-group {
+        border: none;
+        float: none;
+        display: flow-root;
     }
 }

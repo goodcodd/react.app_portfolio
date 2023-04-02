@@ -16,38 +16,38 @@ const userList = [
   {
     id: 0,
     image: img6,
-    description: 'HTML Resume',
-    data: 2022
+    description: 'Happy moments',
+    data: 2023
   },
   {
     id: 1,
     image: img1,
-    description: 'Global Game Jam',
-    data: 2023
+    description: 'Summer vibes',
+    data: 2022
   },
   {
     id: 2,
     image: img2,
-    description: 'First html/css project',
+    description: 'Our incredible visitors',
     data: 2020
   },
   {
     id: 3,
     image: img3,
-    description: 'Site for Practice',
-    data: 2022
+    description: 'New coctails',
+    data: 2023
   },
   {
     id: 4,
     image: '404',
-    description: 'C++ coding',
-    data: 2021
+    description: 'Cozy atmosphere',
+    data: 2019
   },
   {
     id: 5,
     image: img5,
-    description: 'Coding Games in Python',
-    data: 2019
+    description: 'Our bartenders are the best',
+    data: 2022
   }
 ];
 
@@ -153,7 +153,7 @@ export default class Projects extends Component {
       const newList = [...list, {
         id: list.length + 1,
         image: img7,
-        description: 'Work with Figma',
+        description: 'The most excited visitors',
         data: 2020
       }];
       return { list: newList };
@@ -182,8 +182,8 @@ export default class Projects extends Component {
     const { list } = this.state;
     return (
       <main className="section">
-        <div className="container">
-          <h2 className="title-1">Projects</h2>
+        <div className="container" id="projects">
+          <h2 className="title-1">Gallery Page</h2>
           <ul className="projects">
             {
                 list.map((item) => (
@@ -211,6 +211,7 @@ export default class Projects extends Component {
             <Button type="button" className="btn btn_projects" onClick={this.DeleteArray} text="Видалити" />
           </div>
         </div>
+        <hr className="hr" />
       </main>
     );
   }

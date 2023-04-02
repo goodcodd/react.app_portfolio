@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Image from '../image/Image';
+import Counter from '../HOC/Counter';
 
 export default class ApiFile extends Component {
   constructor(props) {
@@ -7,8 +8,8 @@ export default class ApiFile extends Component {
     this.state = {
       error: null,
       isLoaded: false,
-      items: []
-      // currentPage: 0
+      items: [],
+      count: 0
     };
     // this.pagesNumber = 1;
   }
@@ -31,7 +32,9 @@ export default class ApiFile extends Component {
   }
 
   render() {
-    const { error, isLoaded, items } = this.state;
+    const {
+      error, isLoaded, items, count 
+    } = this.state;
     if (error) {
       return (
         <p>
@@ -44,8 +47,9 @@ export default class ApiFile extends Component {
       return <p> Loading! </p>;
     }
     return (
-      <main className="section">
+      <main className="api_section">
         <div className="container">
+          <h1 className="api_h">Drinks</h1>
           <ul className="api__list">
             {items.map((item) => (
               <li key={item.idDrink}>
@@ -54,6 +58,13 @@ export default class ApiFile extends Component {
                 <Image className="api__img" src={item.strDrinkThumb} alt="api" />
               </li>
             ))}
+            <div className="container">
+              <Counter
+                count={count}
+                onCountUp={() => this.setState({ count: count + 1 })}
+                onCountDown={() => this.setState({ count: count - 1 })}
+              />
+            </div>
           </ul>
         </div>
       </main>
