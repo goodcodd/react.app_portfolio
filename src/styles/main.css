@@ -128,7 +128,7 @@ a {
     justify-content: center;
     align-items: center;
     background-color: var(--dark-bg);
-
+    border-bottom: 1px solid var(--black-border);
     background-image: url(../assets/img/Abstract.png);
     background-repeat: no-repeat;
     block-size: auto;
@@ -207,8 +207,6 @@ a {
     text-align: center;
 }
 
-
-
 /*Content list*/
 .content-list {
     margin: 0 auto;
@@ -245,7 +243,9 @@ a {
 .slills-container {
     padding: 70px 0;
     background-color: var(--dark-bg);
-    color: var(--header-text);;
+    color: var(--header-text);
+    border-bottom: 1px solid var(--black-border);
+    border-top: 1px solid var(--black-border);
 }
 
 /*Projects*/
@@ -300,6 +300,7 @@ a {
 
 /*Footer*/
 .footer {
+    border-top: 1px solid var(--black-border);
     margin-top: auto;
     padding: 60px 0 50px;
     background-color: var(--dark-bg);
@@ -384,6 +385,17 @@ a {
 .btn-dsuccess {
     background-color: var(--black);
 }
+
+/*light_dark*/
+.dark {
+    background-color: #1f0f1b;
+    color: #ffaaba;
+}
+
+.btn-secondary dark {
+    background-color: #000;
+}
+
 
 @media (max-width: 620px) {
     /*Header*/

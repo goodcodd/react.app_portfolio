@@ -8,6 +8,8 @@ import img5 from '../../assets/img/projects/05.jpg';
 import img6 from '../../assets/img/projects/06.jpg';
 import img7 from '../../assets/img/projects/07.jpg';
 import Button from '../buttons/Button';
+import LightDarkContext from '../context/LightDarkContext';
+
 
 export const ARROW_LEFT_KEY_CODE = 37;
 export const ARROW_RIGHT_KEY_CODE = 39;
@@ -181,38 +183,44 @@ export default class Projects extends Component {
   render() {
     const { list } = this.state;
     return (
-      <main className="section">
-        <div className="container" id="projects">
-          <h2 className="title-1">Gallery Page</h2>
-          <ul className="projects">
-            {
-                list.map((item) => (
-                  <li
-                    className={this.getClassName(item.id)}
-                    key={item.image}
-                    draggable
-                    onDragStart={() => this.functionOnDragStart(item.id)}
-                    onDragEnter={() => this.functionOnDragEnter(item.id)}
-                    onDragEnd={() => this.handleDrop()}
-                  >
-                    <Image alt="Project img" className="project__img" src={item.image} />
-                    <h3 className="project__title">{item.description}</h3>
-                    <p className="project__data">{item.data}</p>
-                  </li>
-                ))
-             }
+        <LightDarkContext.Consumer>
+          {
+            (myTemplate) => (
+                <main className={myTemplate === 'light' ? 'section light' : 'section dark'}>
+              <div className="container" id="projects">
+              <h2 className="title-1">Gallery Page</h2>
+              <ul className="projects">
+                {
+                    list.map((item) => (
+                      <li
+                        className={this.getClassName(item.id)}
+                        key={item.image}
+                        draggable
+                        onDragStart={() => this.functionOnDragStart(item.id)}
+                        onDragEnter={() => this.functionOnDragEnter(item.id)}
+                        onDragEnd={() => this.handleDrop()}
+                      >
+                        <Image alt="Project img" className="project__img" src={item.image} />
+                        <h3 className="project__title">{item.description}</h3>
+                        <p className="project__data">{item.data}</p>
+                      </li>
+                    ))
+                 }
 
-          </ul>
+              </ul>
 
-          <div className="btn_projects">
-            <Button type="button" className="btn btn_projects" onClick={this.standardSort} text="Сортувати1" />
-            <Button type="button" className="btn btn_projects" onClick={this.sortArray} text="Сортувати2" />
-            <Button type="button" className="btn btn_projects" onClick={this.AddArray} text="Додати" />
-            <Button type="button" className="btn btn_projects" onClick={this.DeleteArray} text="Видалити" />
-          </div>
-        </div>
-        <hr className="hr" />
-      </main>
+              <div className="btn_projects">
+                <Button type="button" className="btn btn_projects" onClick={this.standardSort} text="Сортувати1" />
+                <Button type="button" className="btn btn_projects" onClick={this.sortArray} text="Сортувати2" />
+                <Button type="button" className="btn btn_projects" onClick={this.AddArray} text="Додати" />
+                <Button type="button" className="btn btn_projects" onClick={this.DeleteArray} text="Видалити" />
+              </div>
+            </div>
+            <hr className="hr" />
+          </main>
+            )
+          }
+        </LightDarkContext.Consumer>
     );
   }
 }

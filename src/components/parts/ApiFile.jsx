@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Image from '../image/Image';
 import Counter from '../HOC/Counter';
+import LightDarkContext from '../context/LightDarkContext';
+
 
 export default class ApiFile extends Component {
   constructor(props) {
@@ -47,27 +49,33 @@ export default class ApiFile extends Component {
       return <p> Loading! </p>;
     }
     return (
-      <main className="api_section">
-        <div className="container">
-          <h1 className="api_h">Drinks</h1>
-          <ul className="api__list">
-            {items.map((item) => (
-              <li key={item.idDrink}>
-                {item.strDrink}
-                <br />
-                <Image className="api__img" src={item.strDrinkThumb} alt="api" />
-              </li>
-            ))}
-            <div className="container">
-              <Counter
-                count={count}
-                onCountUp={() => this.setState({ count: count + 1 })}
-                onCountDown={() => this.setState({ count: count - 1 })}
-              />
-            </div>
-          </ul>
-        </div>
-      </main>
+        <LightDarkContext.Consumer>
+          {
+            (myTemplate) => (
+                <main className={myTemplate === 'light' ? 'api_section light' : 'api_section dark'}>
+                  <div className="container">
+                    <h1 className="api_h">Drinks</h1>
+                    <ul className="api__list">
+                      {items.map((item) => (
+                        <li key={item.idDrink}>
+                          {item.strDrink}
+                          <br />
+                          <Image className="api__img" src={item.strDrinkThumb} alt="api" />
+                        </li>
+                      ))}
+                      <div className="container">
+                        <Counter
+                          count={count}
+                          onCountUp={() => this.setState({ count: count + 1 })}
+                          onCountDown={() => this.setState({ count: count - 1 })}
+                        />
+                      </div>
+                    </ul>
+                  </div>
+                </main>
+            )
+          }
+        </LightDarkContext.Consumer>
     );
   }
 }
