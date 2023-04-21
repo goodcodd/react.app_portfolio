@@ -51,8 +51,8 @@ export default function ApiFile() {
                   <div className="container">
                     <Counter
                         count={count}
-                        onCountUp={() => setCount(count + 1)}
-                        onCountDown={() => setCount(count - 1)}
+                        onCountUp={() => this.setState(({ count }) => ({ count: count + 1 }))}
+                        onCountDown={() => this.setState(({ count }) => ({ count: count - 1 }))}
                     />
                   </div>
                 </ul>
