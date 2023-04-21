@@ -1,15 +1,11 @@
-import { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class List extends Component {
-  render() {
-    const { className, text } = this.props;
-    return (
+function List({ className, text }) {
+  return (
       <ul className={className}>
         {text}
       </ul>
-    );
-  }
+  );
 }
 
 List.propTypes = {
@@ -17,6 +13,6 @@ List.propTypes = {
   text: PropTypes.string.isRequired
 };
 
-Image.defaultProps = {
+List.defaultProps = {
   className: ''
 };
