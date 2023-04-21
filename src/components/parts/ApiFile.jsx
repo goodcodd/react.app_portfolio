@@ -7,7 +7,7 @@ export default function ApiFile() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
-  const [count, setCount] = useState(0);
+  const [ count ] = useState(0);
 
   useEffect(() => {
     fetch('https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=Cocktail')

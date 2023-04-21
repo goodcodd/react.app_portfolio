@@ -1,5 +1,5 @@
 import React from 'react';
 
-const LightDarkContext = React.createContext('Light');
+const LightDarkContext = React.createContext('light');
 
 export default LightDarkContext;
