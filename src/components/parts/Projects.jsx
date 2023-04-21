@@ -78,15 +78,14 @@ export default class Projects extends Component {
     const { list } = this.state;
     switch (event.keyCode) {
       case ARROW_LEFT_KEY_CODE:
-        this.setState({
-          SelectedItemId:
-              SelectedItemId = (SelectedItemId - 1) < 0 ? (list.length - 1) : (SelectedItemId - 1)
-        });
+        this.setState(({SelectedItemId}) => ({
+          SelectedItemId: (SelectedItemId + 1) % list.length
+        }));
         break;
       case ARROW_RIGHT_KEY_CODE:
-        this.setState({
+        this.setState(({SelectedItemId}) => ({
           SelectedItemId: SelectedItemId = (SelectedItemId + 1) % list.length
-        });
+        }));
         break;
       default: this.setState({ SelectedItemId: null });
     }
